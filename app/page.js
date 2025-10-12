@@ -168,7 +168,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Filters and Listings */}
+      {/* Filters and Listings Section - MOVED UP */}
       <section className="px-6 pb-20">
         <div className="container mx-auto">
           <div className="flex items-center justify-between mb-8">
@@ -306,6 +306,117 @@ export default function HomePage() {
           )}
         </div>
       </section>
+
+      {/* Location Information Section - MOVED BELOW Recent Listings */}
+      <section className="px-6 pb-16">
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-white mb-4">📍 Item Collection Points</h2>
+            <p className="text-lg text-gray-400">Where to drop off found items or collect your lost belongings</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Item Drop-off Location */}
+            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-cyan-500/30 transition-all">
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="w-16 h-16 bg-emerald-500/20 rounded-xl flex items-center justify-center">
+                  <Package className="w-8 h-8 text-emerald-400" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-semibold text-white">Item Drop-off Location</h3>
+                  <p className="text-gray-400">Found something? Drop it here</p>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 text-gray-300">
+                  <MapPin className="w-5 h-5 text-cyan-400" />
+                  <span className="text-lg">Engineering College Gate</span>
+                </div>
+                <div className="flex items-center space-x-3 text-gray-300">
+                  <MapPin className="w-5 h-5 text-cyan-400" />
+                  <span className="text-lg">Ground Floor, Workshop Lab</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Item Pick-up Location */}
+            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-cyan-500/30 transition-all">
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="w-16 h-16 bg-cyan-500/20 rounded-xl flex items-center justify-center">
+                  <MapPin className="w-8 h-8 text-cyan-400" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-semibold text-white">Item Pick-up Location</h3>
+                  <p className="text-gray-400">Collect your lost items here</p>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 text-gray-300">
+                  <MapPin className="w-5 h-5 text-cyan-400" />
+                  <span className="text-lg">Engineering College Gate</span>
+                </div>
+                <div className="flex items-center space-x-3 text-gray-300">
+                  <MapPin className="w-5 h-5 text-cyan-400" />
+                  <span className="text-lg">Ground Floor, Workshop Lab</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* College Address Section - MOVED BELOW Collection Points */}
+      <section className="px-6 pb-16">
+        <div className="container mx-auto">
+          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 max-w-5xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-4xl font-bold text-white mb-2">🏫 College Address</h2>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Address */}
+              <div className="text-center md:text-left">
+                <h3 className="text-2xl font-semibold text-white mb-4 flex items-center justify-center md:justify-start">
+                  <MapPin className="w-6 h-6 text-cyan-400 mr-3" />
+                  Address
+                </h3>
+                <div className="space-y-2 text-gray-300 text-lg">
+                  <p>New Rizvi Educational Complex</p>
+                  <p>Off Carter Road, Bandra West</p>
+                  <p>Mumbai - 400050</p>
+                </div>
+              </div>
+              
+              {/* Contact */}
+              <div className="text-center md:text-left">
+                <h3 className="text-2xl font-semibold text-white mb-4 flex items-center justify-center md:justify-start">
+                  <svg className="w-6 h-6 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  Phone
+                </h3>
+                <div className="space-y-1 text-gray-300 text-lg">
+                  <p>022 - 69778690 / 91 / 92</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="mt-20 py-8 border-t border-white/10 bg-black/20 backdrop-blur-md">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="text-gray-400 mb-4 md:mb-0">
+              <p className="text-lg">© 2025 All rights reserved to <span className="text-cyan-400 font-semibold">Binary Bros</span></p>
+            </div>
+            <div className="text-gray-400">
+              <p className="text-lg">Lost & Found Management System</p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
