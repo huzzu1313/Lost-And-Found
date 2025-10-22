@@ -8,6 +8,7 @@ export async function GET(request) {
   try {
     const db = await getDb();
     const { searchParams } = new URL(request.url);
+    const session = await getServerSession(authOptions);
     
     const query = {};
     const search = searchParams.get('search');
@@ -16,6 +17,7 @@ export async function GET(request) {
     const status = searchParams.get('status');
     const verified = searchParams.get('verified');
 
+    // Build search filters
     if (search) {
       query.$or = [
         { title: { $regex: search, $options: 'i' } },
@@ -29,6 +31,21 @@ export async function GET(request) {
     if (location && location !== 'all') query.location = location;
     if (status && status !== 'all') query.status = status;
     if (verified === 'true') query.verified = true;
+
+    // VERIFICATION FILTER: Show only verified items to public
+    // Logged-in users see verified + their own items
+    // Admins see everything
+    if (!session) {
+      // Not logged in - show only verified items
+      query.verified = true;
+    } else if (session.user.role !== 'admin') {
+      // Logged-in non-admin users - show verified items + their own items
+      query.$or = [
+        { verified: true },
+        { userId: session.user.id }
+      ];
+    }
+    // Admin sees everything (no additional filter)
 
     const items = await db.collection('items')
       .find(query)
@@ -80,14 +97,17 @@ export async function POST(request) {
       userId: session.user.id,
       userName: session.user.name,
       userEmail: session.user.email,
-      verified: false,
+      verified: false, // All new items start as unverified
       createdAt: new Date().toISOString()
     };
 
     await db.collection('items').insertOne(item);
 
     return NextResponse.json(
-      { message: 'Item created successfully', item },
+      { 
+        message: 'Item submitted successfully! Admin will verify within 24 hours.', 
+        item 
+      },
       { status: 201 }
     );
   } catch (error) {
